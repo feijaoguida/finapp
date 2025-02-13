@@ -6,7 +6,9 @@
 @createdAt = {{$datetime iso8601}}
 @modifiedBy = {{$processEnv USERNAME}}
 
-GET {{host}} HTTP/1.1
+### GET USER BY EMAIL
+@userEmail = jetlee@gmail.com
+GET {{host}}/user/{{userEmail}} HTTP/1.1
 
 ###
 
