@@ -1,0 +1,21 @@
+# VARIAVEIS - 
+@hostname = http://localhost
+@port = 3000
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+@createdAt = {{$datetime iso8601}}
+@modifiedBy = {{$processEnv USERNAME}}
+
+GET {{host}} HTTP/1.1
+
+###
+
+
+POST {{host}}/user HTTP/1.1
+content-type: {{contentType}}
+
+{
+    "name": "Jet Lee",
+    "email": "jetlee@gmail.com",
+    "password": "@Jet123"
+}
