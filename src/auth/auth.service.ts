@@ -1,4 +1,4 @@
-import { UserService } from './../user/user.service';
+import { CreateUserService } from '../user/createUser.service';
 import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { User } from 'src/user/entities/user.entity';
@@ -9,7 +9,7 @@ import { userToken } from './models/UserToken';
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly userService: UserService,
+    private readonly createUserService: CreateUserService,
     private readonly jwtService: JwtService,
   ) {}
   login(user: User): userToken {
@@ -27,7 +27,7 @@ export class AuthService {
   }
 
   async validateUser(email: string, password: string) {
-    const user = await this.userService.findByEmail(email);
+    const user = await this.createUserService.findByEmail(email);
 
     if (user) {
       const isPasswordValid = await bcrypt.compare(password, user.password);

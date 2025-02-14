@@ -5,21 +5,27 @@
 @contentType = application/json
 @createdAt = {{$datetime iso8601}}
 @modifiedBy = {{$processEnv USERNAME}}
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiamV0bGVlQGdtYWlsLmNvbSIsIm5hbWUiOiJKZXQgTGVlIiwiaWF0IjoxNzM5NDk0MzM1LCJleHAiOjE3NDAwOTkxMzV9.k-4POXHtswKf30vguuJgJ4jcnyDI9n-1aERH8Z137M4
+@authorization = Bearer {{token}}
 
 ### GET USER BY EMAIL
 @userEmail = jetlee@gmail.com
 GET {{host}}/user/{{userEmail}} HTTP/1.1
+Authorization: {{authorization}}
+
+### GET USER LOGGED
+GET {{host}}/me HTTP/1.1
+Authorization: {{authorization}}
 
 ###
-
-
 POST {{host}}/user HTTP/1.1
 content-type: {{contentType}}
+Authorization: {{authorization}}
 
 {
-    "name": "Jet Lee",
-    "email": "jetlee@gmail.com",
-    "password": "@Jet123"
+    "name": "Bruce Lee",
+    "email": "brucelee@gmail.com",
+    "password": "@Bruce123"
 }
 
 # SISTEMA DE LOGIN E AUTENTICACAO
@@ -28,6 +34,6 @@ POST {{host}}/login HTTP/1.1
 content-type: {{contentType}}
 
 {
-    "email": "jetlee@gmail.com",
-    "password": "@Jet123"
+    "email": "brucelee@gmail.com",
+    "password": "@Bruce123"
 }
