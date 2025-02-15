@@ -20,4 +20,42 @@ model User {
   password String
 
   name String
+
+  accounts Account[]
+}
+
+model Account {
+  id String   @id @default(uuid())
+
+  name String @unique()
+
+  balance Float  @default(0.0)
+
+  createdAt DateTime @default(now())
+
+  transactionsSent   Transaction[] @relation("Sender")
+  transactionsReceived Transaction[] @relation("Receiver")
+
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+
+}
+
+model Transaction {
+  id        String   @id @default(uuid())
+  amount    Float
+  status    TransactionStatus   @default(PENDING)
+  senderId  String
+  receiverId String
+
+  createdAt DateTime @default(now())
+
+  sender   Account @relation("Sender", fields: [senderId], references: [id])
+  receiver Account @relation("Receiver", fields: [receiverId], references: [id])
+}
+
+enum TransactionStatus {
+  PENDING
+  COMPLETED
+  REVERSED
 }
