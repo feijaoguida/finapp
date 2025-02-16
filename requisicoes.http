@@ -28,7 +28,7 @@ Authorization: {{authorization}}
     "password": "@Bruce123"
 }
 
-# SISTEMA DE LOGIN E AUTENTICACAO
+# MODULO DE LOGIN E AUTENTICACAO
 ### login
 POST {{host}}/login HTTP/1.1
 content-type: {{contentType}}
@@ -37,3 +37,46 @@ content-type: {{contentType}}
     "email": "brucelee@gmail.com",
     "password": "@Bruce123"
 }
+
+# MODULO DE ACCOUNT
+### GET ALL ACCOUNT
+GET {{host}}/account HTTP/1.1
+Authorization: {{authorization}}
+
+### GET ACCOUNT BY ID
+GET {{host}}/account/831a3342-ae77-4656-9682-68833b3e4c2c HTTP/1.1
+Authorization: {{authorization}}
+
+### GET ACCOUNT BY NAME
+GET {{host}}/account/name/contaBruce HTTP/1.1
+Authorization: {{authorization}}
+
+### CREATE ACCOUNT
+POST {{host}}/account HTTP/1.1
+content-type: {{contentType}}
+Authorization: {{authorization}}
+
+{
+    "name": "contaBruce",
+    "balance": 0,
+    "user": {
+                "id": 1,
+                "email": "jetlee@gmail.com",
+                "name": "Jet Lee"
+            }
+}
+
+### UPDATE ACCOUNT
+PATCH {{host}}/account/831a3342-ae77-4656-9682-68833b3e4c2c HTTP/1.1
+content-type: {{contentType}}
+Authorization: {{authorization}}
+
+{
+    "name": "contaBruceNOVA"
+}
+
+### REMOVE ACCOUNT
+DELETE {{host}}/account/831a3342-ae77-4656-9682-68833b3e4c2c HTTP/1.1
+content-type: {{contentType}}
+Authorization: {{authorization}}
+
