@@ -3,11 +3,10 @@
 @port = 3000
 @host = {{hostname}}:{{port}}
 @contentType = application/json
-@createdAt = {{$datetime iso8601}}
-@modifiedBy = {{$processEnv USERNAME}}
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiamV0bGVlQGdtYWlsLmNvbSIsIm5hbWUiOiJKZXQgTGVlIiwiaWF0IjoxNzM5NDk0MzM1LCJleHAiOjE3NDAwOTkxMzV9.k-4POXHtswKf30vguuJgJ4jcnyDI9n-1aERH8Z137M4
 @authorization = Bearer {{token}}
 
+# MODULO USER
 ### GET USER BY EMAIL
 @userEmail = jetlee@gmail.com
 GET {{host}}/user/{{userEmail}} HTTP/1.1
@@ -72,7 +71,7 @@ content-type: {{contentType}}
 Authorization: {{authorization}}
 
 {
-    "name": "contaBruceNOVA"
+    "balance": 1000
 }
 
 ### REMOVE ACCOUNT
@@ -80,3 +79,27 @@ DELETE {{host}}/account/831a3342-ae77-4656-9682-68833b3e4c2c HTTP/1.1
 content-type: {{contentType}}
 Authorization: {{authorization}}
 
+# MODULO DE TRANSACTION
+### MAKE TRANSFER
+POST {{host}}/transactions HTTP/1.1
+content-type: {{contentType}}
+Authorization: {{authorization}}
+
+{
+    "senderId": "831a3342-ae77-4656-9682-68833b3e4c2c",
+    "receiverId": "252be05a-2bef-4997-bf6f-7b51b108bab2",
+    "amount": 20
+}
+
+### REVERSE TRANSFER
+POST {{host}}/transactions/reverse/cc0cb9f5-38c7-4724-824b-abf1660e1fb8 HTTP/1.1
+content-type: {{contentType}}
+Authorization: {{authorization}}
+
+{
+
+}
+
+### GET ALL TRANSACTION
+GET {{host}}/transactions HTTP/1.1
+Authorization: {{authorization}}
