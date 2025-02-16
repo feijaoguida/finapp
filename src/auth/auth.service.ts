@@ -5,11 +5,13 @@ import { User } from 'src/user/entities/user.entity';
 import { UserPayload } from './models/UserPayload';
 import { JwtService } from '@nestjs/jwt';
 import { userToken } from './models/UserToken';
+import { FindUserService } from 'src/user/findUser.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly createUserService: CreateUserService,
+    private readonly findUserService: FindUserService,
     private readonly jwtService: JwtService,
   ) {}
   login(user: User): userToken {
@@ -27,7 +29,7 @@ export class AuthService {
   }
 
   async validateUser(email: string, password: string) {
-    const user = await this.createUserService.findByEmail(email);
+    const user = await this.findUserService.findByEmail(email);
 
     if (user) {
       const isPasswordValid = await bcrypt.compare(password, user.password);
