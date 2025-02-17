@@ -22,9 +22,9 @@ content-type: {{contentType}}
 Authorization: {{authorization}}
 
 {
-    "name": "Bruce Lee",
-    "email": "brucelee@gmail.com",
-    "password": "@Bruce123"
+    "name": "Jack Chan",
+    "email": "jackchane@gmail.com",
+    "password": "@Jack123"
 }
 
 # MODULO DE LOGIN E AUTENTICACAO
@@ -33,8 +33,8 @@ POST {{host}}/login HTTP/1.1
 content-type: {{contentType}}
 
 {
-    "email": "brucelee@gmail.com",
-    "password": "@Bruce123"
+    "email": "jackchane@gmail.com",
+    "password": "@Jack123"
 }
 
 # MODULO DE ACCOUNT

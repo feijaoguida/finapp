@@ -1,6 +1,5 @@
-import { CreateUserService } from '../user/createUser.service';
 import { Injectable } from '@nestjs/common';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { User } from 'src/user/entities/user.entity';
 import { UserPayload } from './models/UserPayload';
 import { JwtService } from '@nestjs/jwt';
@@ -10,7 +9,6 @@ import { FindUserService } from 'src/user/findUser.service';
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly createUserService: CreateUserService,
     private readonly findUserService: FindUserService,
     private readonly jwtService: JwtService,
   ) {}

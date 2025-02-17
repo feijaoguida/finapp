@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "buildCommand": "npx prisma generate",
   "builds": [
     {
       "src": "dist/main.js",
@@ -11,5 +12,9 @@
       "src": "/(.*)",
       "dest": "dist/main.js"
     }
-  ]
+  ],
+  "env": {
+    "DATABASE_URL": "file:./sqlite.db",
+    "JWT_SECRET": "VGVzdGVHcnVwb0Fkcmlhbm9Db2J1Y2Npbw=="
+  }
 }
