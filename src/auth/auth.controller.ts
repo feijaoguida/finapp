@@ -1,5 +1,6 @@
 import { AuthService } from './auth.service';
 import {
+  Body,
   Controller,
   HttpCode,
   HttpStatus,
@@ -10,7 +11,10 @@ import {
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { AuthRequest } from './models/AuthRequest';
 import { IsPublic } from './decorators/is-public.decorator';
+import { LoginDto } from './dto/login.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Login')
 @Controller()
 export class AuthController {
   constructor(private readonly AuthService: AuthService) {}
@@ -19,7 +23,7 @@ export class AuthController {
   @IsPublic()
   @HttpCode(HttpStatus.OK)
   @UseGuards(LocalAuthGuard)
-  login(@Request() req: AuthRequest) {
+  login(@Body() loginDto: LoginDto, @Request() req: AuthRequest) {
     return this.AuthService.login(req.user);
   }
 }

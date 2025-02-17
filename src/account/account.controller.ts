@@ -13,7 +13,10 @@ import { UpdateAccountDto } from './dto/update-account.dto';
 import { FindAccountService } from './findAccount.service';
 import { RemoveAccountService } from './removeAccount.service';
 import { UpdateAccountService } from './updateAccount.service';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiBearerAuth()
+@ApiTags('Account')
 @Controller('account')
 export class AccountController {
   constructor(

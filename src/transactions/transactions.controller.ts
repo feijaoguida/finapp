@@ -2,7 +2,10 @@ import { transferDto } from './dto/transfer-dto';
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { TransactionsService } from './transactions.service';
 import { FindTransactionsService } from './findTransactions.service';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiBearerAuth()
+@ApiTags('Transactions')
 @Controller('transactions')
 export class TransactionsController {
   constructor(

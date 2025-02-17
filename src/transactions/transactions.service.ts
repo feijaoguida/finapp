@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { Prisma, PrismaClient, Transaction, User } from '@prisma/client';
 import { DefaultArgs } from '@prisma/client/runtime/library';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from './../prisma/prisma.service';
 
 export interface UpdateAccountTypes {
   context: Omit<

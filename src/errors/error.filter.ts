@@ -4,10 +4,10 @@ import { Request, Response } from 'express';
 @Catch(Error)
 export default class ErroFilter implements ExceptionFilter {
   catch(exception: Error, host: ArgumentsHost) {
-    const contexto = host.switchToHttp();
+    const context = host.switchToHttp();
 
-    const request = contexto.getRequest<Request>();
-    const response = contexto.getResponse<Response>();
+    const request = context.getRequest<Request>();
+    const response = context.getResponse<Response>();
 
     const status = (exception as any).getStatus
       ? (exception as any).getStatus()
